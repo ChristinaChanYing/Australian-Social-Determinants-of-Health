@@ -1,6 +1,6 @@
 #### Preamble ####
 # Purpose: Clean the survey data downloaded from [...UPDATE ME!!!!!]
-# Author: Rohan Alexander [CHANGE THIS TO YOUR NAME!!!!]
+# Author: Christina Chan-Ying, Yandrickx Dumalog, Reese Halfyard
 # Data: 3 January 2021
 # Contact: rohan.alexander@utoronto.ca [PROBABLY CHANGE THIS ALSO!!!!]
 # License: MIT
@@ -24,35 +24,17 @@ library(readxl)
 library(dplyr)
 library(haven)
 library(tidyverse)
+
 # Read in the raw data. 
-# mydata = read.xlsx("inputs/data/GSS_Table3.xlsx",2)
 
 
-my_data <- read_excel("inputs/data/GSS_Table3.xlsx", sheet = 2)
-my_data <-
-  my_data %>%
-  dplyr::select(mfr, model, msrp) %>%
-  dplyr::slice(2:5) %>%
-  gt() %>%
-  tab_header(
-    subtitle = md("couuminuty involvement")
-  )
+cleaned_data_males <- read_excel("inputs/data/GSS_Table3.xlsx", sheet = 2)
+write_csv(cleaned_data_males, "inputs/data/cleaned_data_males.csv")
 
 
-
-# Just keep some variables that may be of interest (change 
-# this depending on your interests)
-names(raw_data)
-
-reduced_data <- 
-  raw_data %>% 
-  select(first_col, 
-         second_col)
-rm(raw_data)
-         
-
-#### What's next? ####
-
-
+install.packages("xlsx")
+library("xlsx")
+male_data <- read.xlsx("inputs/data/GSS_Table3.xlsx", 2, header=TRUE, skipEmptyRows = TRUE, colNames = TRUE, rowNames = TRUE)
+male_data
 
          

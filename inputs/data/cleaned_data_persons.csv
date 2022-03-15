@@ -1,0 +1,65 @@
+Section,Persons,Has a mental health condition,Does not have a mental health condition,Has a long term health condition,Does not have a long term health condition,Has disability,Has no disability,Total persons
+Community involvement,Has undertaken unpaid voluntary work through an organisation in last 12 months,641.8,4380.1,2362.4,2674.1,1464.1,3561.1,5025.3
+Community involvement,Has undertaken informal volunteering in last 4 weeks,741.4,5757.5,2842.5,3662.9,1670.2,4844.5,6511.4
+Community involvement,Provided unpaid work/support to non-household members in last 4 weeks,1210.9,8760.9,4678,5281.3,2729.2,7241.2,9968.3
+Has been involved in groups in the last 12 months,Social groups,963.4,8430.5,4248,5132.7,2583.7,6777.6,9376.5
+Has been involved in groups in the last 12 months,Community support groups,595.9,3689.3,2108.5,2170.7,1250,3035.1,4285.3
+Has been involved in groups in the last 12 months,Civic and political groups,217.1,1255.6,831.7,617.3,483.3,992.8,1467
+Feels able to have a say within community on important issues,All of the time / Most of the time,526.7,5425.1,2455.9,3512.6,1621,4349.2,5966.4
+Feels able to have a say within community on important issues,Some of the time,594.8,5276.7,2433.1,3427.3,1418,4452.5,5852.5
+Feels able to have a say within community on important issues,A little of the time / None of the time,1465.6,6965.4,4053.4,4387.6,2596.6,5826.4,8445.8
+Family and community support,Had face to face contact with family or friends living outside the household at least once a week in last 3 months,1053.4,7434.2,3862.6,4624.1,2312.3,6180,8471.9
+Family and community support,Had other forms of contact with family or friends living outside the household at least once a week in last 3 months,2131.9,15113.3,7489.1,9750.4,4560.1,12678.9,17242.7
+Family and community support,Able to get support in times of crisis from persons living outside the household,2196.4,16611.8,8109.3,10676.7,5059.3,13739.3,18808
+Family and community support,Has family or friends living outside the household to confide in,2069.6,15414.6,7649.4,9823.4,4770.8,12691.3,17481.6
+Family and community support,"Cared for a person with either a disability, long term health condition or old age in last 4 weeks",547.9,1990.2,1577.1,950,1028.7,1515.8,2534.6
+Cultural tolerance and discrimination,Agrees that it is a good thing for society to be comprised of different cultures,2171,15096,7544.9,9744.9,4574.9,12705.3,17296.9
+Cultural tolerance and discrimination,Has experienced discrimination in last 12 months,538.9,2168.4,1295.9,1420,889.7,1809.8,2702.1
+Feels most people can be trusted,Strongly agree / Somewhat agree,1512.4,10925.7,5610.5,6858.3,3365.1,9067.2,12434.3
+Feels most people can be trusted,Neither agree nor disagree,536.7,3796.3,1584.2,2729.4,1079.7,3219.3,4329.5
+Feels most people can be trusted,Somewhat disagree / Strongly disagree,558.4,2941.8,1751,1740.1,1160.3,2336.8,3501.7
+Feels the healthcare system can be trusted,Strongly agree / Somewhat agree,1862.1,13644.1,6860.4,8642.6,4213.4,11277.2,15490.6
+Feels the healthcare system can be trusted,Neither agree nor disagree,387.1,2544.3,1144.1,1788.7,746.8,2181,2927.4
+Feels the healthcare system can be trusted,Somewhat disagree / Strongly disagree,343.9,1479,952.7,891.4,671.7,1172.8,1825.2
+Stressors,Has experienced at least one personal stressor in last 12 months,2154.9,9810.1,6037.2,5911.6,3878.8,8077.1,11939.1
+Stressors,Always or Often feels rushed for time,1028.4,5562.7,2835.2,3774.5,1793,4820.8,6615.2
+Stressors,Always or Often has difficulty getting to the places needed,168.3,477,402.8,262.3,384,257.8,636.2
+Stressors,Has difficulty accessing service providers,823.9,3353.4,2513.5,1672,1654.7,2520.7,4170.6
+Self-assessed health status,Excellent / Very good,751.9,10254.4,2994.9,8022,1546.7,9462.3,10993.9
+Self-assessed health status,Good,815.9,5382.4,3464.5,2737.1,1924.6,4275.1,6187.3
+Self-assessed health status,Fair / Poor,1034.5,2044.5,2496.7,564.6,2183,899.1,3066.7
+Age group,15–24,454.9,2622,717.7,2331.4,425.5,2626.7,3056.2
+Age group,25–39,750,4770.3,1540.4,3964.6,800.3,4713.7,5522.2
+Age group,40–54,644.5,4204.9,1951.5,2886.8,1217.5,3607.4,4830
+Age group,55–69,528.1,3616.5,2535.8,1597.4,1649.5,2483.2,4144.5
+Age group,70 years and over,254.6,2476.7,2186.4,547.7,1521.3,1212.9,2734.3
+Labour force status,Full-time,584.3,7237.9,2453.2,5359.2,1341.9,6464.8,7822.8
+Labour force status,Part-time,681.7,3800.9,1826.3,2630.3,998.6,3466.6,4478
+Labour force status,Unemployed,171.8,721.5,368.2,498.7,263.1,622.8,885.2
+Labour force status,Not in the labour force,1178.5,5924.1,4280,2839.9,3017.3,4075.4,7118.8
+Level of highest non-school qualification,Bachelor Degree or above,692.6,6045,2555.4,4188.4,1434.6,5310,6733.3
+Level of highest non-school qualification,Advanced Diploma/Diploma or below,946.9,5356.7,3052.8,3248.1,1890.9,4414,6307.3
+Level of highest non-school qualification,No non-school qualification,941.8,5972.3,3225.2,3684.2,2213,4690.2,6911.4
+Engagement in employment or study,Fully engaged,856.2,9336.2,3035.9,7166.5,1713.1,8525.8,10217.5
+Engagement in employment or study,Partially engaged,628.7,3011.8,1645.8,1980.2,873.3,2751.5,3624.7
+Engagement in employment or study,Not engaged in study or employment,1108,5330.4,4254.8,2163.4,3058.1,3366.5,6441.3
+Family composition of household,Couple family with dependant children,657.3,5783.3,1948.2,4529.5,1148.8,5311.9,6472.7
+Family composition of household,One parent family with dependant children,185.3,760.5,390,549.8,233.2,718.6,944.2
+Family composition of household,Couple only,623.9,5051.6,3099.4,2578.9,1906,3777.7,5672.2
+Family composition of household,Other one family households,399.3,2240.4,1155.5,1463.2,872.1,1780.4,2631.6
+Family composition of household,Lone person,444,2283.1,1675.8,1045.4,1134.7,1580.9,2721.7
+Family composition of household,Other households,282,1558.3,675.7,1135.1,355.8,1476.3,1817.8
+Marital status,Married in a registered marriage,920.4,8933.4,4578.5,5249.2,2870.4,6995.1,9849.2
+Marital status,Married in a de facto marriage,352.4,2051.8,962.8,1446.5,522.3,1870.8,2395.8
+Marital status,Not married,1326.8,6700,3408.2,4619,2235.4,5800.2,8017.4
+Main Source of Household Income,Employee income,1527.6,12026.3,4774.6,8786.3,2598.8,10946.7,13558.3
+Main Source of Household Income,Unincorporated business income,47,270.9,144.7,195.6,111.8,209.2,336.3
+Main Source of Household Income,Government pensions and allowances,796.5,2860.5,2568.9,1110.4,1936.8,1734.5,3670.7
+Main Source of Household Income,Other income,135.8,1626.6,1199.6,563,787.6,991.7,1771.1
+Current weekly household equivalised gross income quintiles,Lowest quintile,577.5,3076.2,1692.3,1957.4,1217.6,2433.8,3670.5
+Current weekly household equivalised gross income quintiles,Second quintile,572.4,3001.2,1961.3,1626,1430.5,2141.2,3583.9
+Current weekly household equivalised gross income quintiles,Third quintile,483.6,3311,1892.1,1905.9,1140.8,2669.6,3814.7
+Current weekly household equivalised gross income quintiles,Fourth quintile,444.4,3709.1,1488.4,2668.9,869.6,3276,4153.2
+Current weekly household equivalised gross income quintiles,Highest quintile,385.7,3652.1,1507.5,2523.5,735.9,3323.2,4049.1
+NA,Government support has been the main source of income in last 2 years,1120.2,4024.3,3294.7,1844.5,2447.8,2662.1,5126
+NA,Persons aged 15 years and over,2595.2,17659.1,8942.1,11319.2,5638.7,14632.2,20265.2
