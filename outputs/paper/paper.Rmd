@@ -2,9 +2,10 @@
 title: "My title"
 subtitle: "My subtitle if needed"
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+  - Christina Chan-Ying
+  - Yan Dumalag
+  - Reese Halfyard
+thanks: "Code and data are available at: https://github.com/ChristinaChanYing/Australian-Social-Determinants-of-Health"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
 output:
@@ -17,27 +18,55 @@ bibliography: references.bib
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
-library(palmerpenguins)
+library(ggplot2)
+library(kableExtra)
+library(dplyr)
 ```
 
 # Introduction
 
 You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
 
+```{r, include=FALSE}
+### Grabbing the data ###
+female_data <- readr::read_csv(here::here("inputs/data/cleaned_data_females.csv")) |>
+   as_tibble() |>
+  select(Section, Modules, `Has a mental health condition`, `Does not have a mental health condition`, `Has a long term health condition`, `Does not have a long term health condition`, `Has disability`, `Has no disability`, `Total persons`) |>
+  mutate(Gender = "female")
+
+male_data <- readr::read_csv(here::here("inputs/data/cleaned_data_males.csv")) |>
+   as_tibble() |>
+  select(Section, Modules, `Has a mental health condition`, `Does not have a mental health condition`, `Has a long term health condition`, `Does not have a long term health condition`, `Has disability`, `Has no disability`, `Total persons`)|>
+  mutate(Gender = "male")
+
+persons_data <- readr::read_csv(here::here("inputs/data/cleaned_data_persons.csv")) |>
+   as_tibble() |>
+  select(Section, Modules, `Has a mental health condition`, `Does not have a mental health condition`, `Has a long term health condition`, `Does not have a long term health condition`, `Has disability`, `Has no disability`, `Total persons`) |>
+  mutate(Gender = "all")
+
+female_male_data <-
+    merge(x = female_data, y = male_data, by = c("Section", "Modules", "Has a mental health condition", "Does not have a mental health condition", "Has a long term health condition", "Does not have a long term health condition", "Has disability", "Has no disability", "Total persons", "Gender"), all = TRUE) |>
+  group_by(Gender)
+
+```
+
+```{r trust, fig.cap = "Government Trust", echo = FALSE}
+female_male_trust <- subset(female_male_data, Section == "Feels most people can be trusted")
+
+trust <- ggplot(female_male_trust, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
+  geom_bar(stat="identity", position=position_dodge()) + 
+  geom_text(aes(label=`Total persons`), vjust=1.6, color="black",
+            position = position_dodge(0.9), size=3.5)+
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 90))
+
+trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
+
+```
 
 
 # Data
 
-Our data is of penguins (Figure \@ref(fig:bills)).
-
-```{r bills, fig.cap="Bills of penguins", echo = FALSE}
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
 ```
 
 Talk more about it.
@@ -46,14 +75,7 @@ Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can
 
 ```{r billssssss, fig.cap="More bills of penguins", echo = FALSE, fig.width=8, fig.height=4}
 
-# This needs to be about the random data tha tI sasmpled?
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+
 ```
 
 Talk way more about it. 
