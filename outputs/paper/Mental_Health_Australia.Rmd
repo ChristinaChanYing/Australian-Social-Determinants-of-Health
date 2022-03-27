@@ -74,6 +74,17 @@ stressors + scale_fill_manual(values=c('#d9848e','#84a8d9'))
 ```
 
 ## View on Healthcare
+```{r healthcare, fig.cap="Percent of Australians that agreed the healthcare system can be trusted in 2020", echo = FALSE}
+
+percent_trust <- c(76, 24)
+lbls <- c("Agree", "Disagree")
+pct <- round(percent_trust/sum(percent_trust)*100)
+lbls <- paste(lbls, pct) # add percents to labels
+lbls <- paste(lbls,"%",sep="") # ad % to labels
+pie(percent_trust, labels = lbls, col=c("#bce067", "#ffbd58"), main = "The healthcare system can be trusted")
+
+```
+
 
 In this survey, we understand the differences between men and women who trust the healthcare system with and without mental health conditions. According to Figure 2, this is quite a drastic contrast. 995 women with mental health conditions reported that they have trust among most people, and men sat slightly lower, with 519.7 people. Men without mental illness are at 5,563, whereas women without are 5,343. The key question is why is the amount of trust so much higher in those without mental illness, than those with? Lack of trust in most people equates to common everyday services, including healthcare and treatment. In order to understand the lack of trust that those with mental illness or disabilities have regarding the healthcare system, we must look at history. Up until a few decades ago, the treatment of those with bipolar disorder, depression, anxiety, and other common illnesses, were through a myriad of inhumane theories and practices. In 2006, the Bureau of Justice Statistics reported that “705,600 mentally ill men were incarcerated in the state prison system, and another 78,800 were incarcerated in the federal prison system” [@opentextbc].
 
