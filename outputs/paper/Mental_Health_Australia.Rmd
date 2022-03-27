@@ -12,6 +12,7 @@ output:
   bookdown::pdf_document2
 toc: FALSE
 bibliography: references.bib
+nocite: '@*'
 ---
 
 ```{r setup, include=FALSE}
@@ -24,10 +25,6 @@ library(ggplot2)
 library(kableExtra)
 library(dplyr)
 ```
-
-# Introduction
-
-You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
 
 ```{r, include=FALSE}
 ### Grabbing the data ###
@@ -50,6 +47,58 @@ female_male_data <-
   group_by(Gender)
 
 ```
+# Introduction
+
+You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
+
+# Data
+
+## Stress and Anxiety
+
+In comparison to the feelings of anxiety or stress, 700 females with mental health issues reported “Always” or “Often” to feeling stressed or rushed. This was much higher than males, in which only 300 participants felt consistent stressors or anxiety. Due to societal pressures and expectations, it is extremely likely that women would feel stressors, much more often than men would. According to The Guardian, Australian women encounter stress on a mucher higher level than men do. This is in regards to finances, family, and physical health (The Guardian Reference). Citizens with mental health conditions already experience difficulties from other day activities and events. The addition of a permanent illness will greatly affect the ways Australian men and women approach daily life. 
+
+There are many other factors that affect Australian citizens' experiences with stress and anxiety. This includes intersectionality of race, gender, ethnicity, and sexual orientation. In the survey, 2,168.4 people without mental illness and 538.9 people with mental illness reported experiencing some form of discimination in the past 12 months. This justifies the fact that those with mental health conditions are not as likely to experience oppression because of their illness. For example, a white male with mental illness will have different experiences in navigating daily anxiety and stress than a black woman would. Women, LGBTQ+, and BIPOC experience systematic oppression in a white straight male dominated society. Those who do not identify with these groups may experience difficulties due to their mental illness, but will not face discimination because of their identity. 
+
+```{r stressors, fig.cap="Male vs Female Stressors", echo = FALSE}
+stressors <- subset(female_male_data, Section == "Stressors", select = -c(Section))
+
+stressors <- ggplot(stressors, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
+  geom_bar(stat="identity", position=position_dodge()) + 
+  geom_text(aes(label = `Total persons`), vjust=1.6, color="black",
+            position = position_dodge(0.9), size=3.5)+
+  theme_minimal() +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 20))
+
+stressors + scale_fill_manual(values=c('#d9848e','#84a8d9'))
+
+```
+
+## View on Healthcare
+
+In this survey, we understand the differences between men and women who trust the healthcare system with and without mental health conditions. According to Figure 2, this is quite a drastic contrast. 995 women with mental health conditions reported that they have trust among most people, and men sat slightly lower, with 519.7 people. Men without mental illness are at 5,563, whereas women without are 5,343. The key question is why is the amount of trust so much higher in those without mental illness, than those with? Lack of trust in most people equates to common everyday services, including healthcare and treatment. In order to understand the lack of trust that those with mental illness or disabilities have regarding the healthcare system, we must look at history. Up until a few decades ago, the treatment of those with bipolar disorder, depression, anxiety, and other common illnesses, were through a myriad of inhumane theories and practices. In 2006, the Bureau of Justice Statistics reported that “705,600 mentally ill men were incarcerated in the state prison system, and another 78,800 were incarcerated in the federal prison system” [@opentextbc].
+
+Only until recently, considerations and understandings of mental illness in modern society have been considered. However, a history of societal neglect justifies the lack of trust which both male and female Australians with mental illness obtain.
+
+```{r mhc-trust, fig.cap="People that strongly agrees most people can be trusted", echo = FALSE}
+has_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
+  select(`Has a mental health condition`, Gender) |>
+  rename(`Number of People` = `Has a mental health condition`) |>
+  mutate(`Has a mental health condition` = "Yes")
+  
+no_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
+  select(`Does not have a mental health condition`, Gender) |>
+  rename(`Number of People` = `Does not have a mental health condition`) |>
+  mutate(`Has a mental health condition` = "No")
+
+mhc_trust <- merge(x = has_mhc_trust, y = no_mhc_trust, all = TRUE)
+mhc_trust <- ggplot(mhc_trust, aes(x = `Has a mental health condition`, y = `Number of People`, group = Gender, fill = Gender)) +
+  geom_bar(stat="identity", position=position_dodge()) + 
+  geom_text(aes(label = `Number of People`), vjust=1.6, color="black",
+            position = position_dodge(0.9), size=3.5)+
+  theme_minimal()
+mhc_trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
+
+```
 
 ```{r trust, fig.cap = "Trust: Feels most people can be trusted", echo = FALSE}
 female_male_trust <- subset(female_male_data, Section == "Feels most people can be trusted")
@@ -65,29 +114,7 @@ trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
 
 ```
 
-```{r mhc-trust, fig.cap="People that strongly agrees most people can be trusted", echo = FALSE}
-has_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
-  select(`Has a mental health condition`, Gender) |>
-  rename(`Number of People` = `Has a mental health condition`) |>
-  mutate(`Has a mental health condition` = "Yes")
-  
-no_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
-  select(`Does not have a mental health condition`, Gender) |>
-  rename(`Number of People` = `Does not have a mental health condition`) |>
-  mutate(`Has a mental health condition` = "No")
-
-mhc_trust <- merge(x = has_mhc_trust, y = no_mhc_trust, all = TRUE)
-
-mhc_trust <- ggplot(mhc_trust, aes(x = `Has a mental health condition`, y = `Number of People`, group = Gender, fill = Gender)) +
-  geom_bar(stat="identity", position=position_dodge()) + 
-  geom_text(aes(label = `Number of People`), vjust=1.6, color="black",
-            position = position_dodge(0.9), size=3.5)+
-  theme_minimal()
-
-mhc_trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
-
-```
-
+## Socioeconomic Status
 
 ```{r discrimination, fig.cap="Has experienced discrimination in last 12 months", echo = FALSE}
 person_discrim <- subset(persons_data, Modules == "Has experienced discrimination in last 12 months", select = -c(Section, Modules))
@@ -106,37 +133,13 @@ person_discrim |>
   theme_minimal() + 
   scale_x_discrete(labels = function(x) str_wrap(x, width = 15))
 
-
-```
-
-```{r stressors, fig.cap="Male vs Female Stressors", echo = FALSE}
-stressors <- subset(female_male_data, Section == "Stressors", select = -c(Section))
-
-stressors <- ggplot(stressors, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
-  geom_bar(stat="identity", position=position_dodge()) + 
-  geom_text(aes(label = `Total persons`), vjust=1.6, color="black",
-            position = position_dodge(0.9), size=3.5)+
-  theme_minimal() +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20))
-
-stressors + scale_fill_manual(values=c('#d9848e','#84a8d9'))
-
-
-```
-
-# Data
-
 ```
 
 Talk more about it.
 
-Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can change the height and width so they don't take the whole page?)
+Also bills and their average (Figure \@ref(fig:stressors)). (Notice how you can change the height and width so they don't take the whole page?)
 
 Talk way more about it. 
-
-
-
-# Model
 
 \begin{equation}
 Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
@@ -144,7 +147,7 @@ Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
 
 Equation \@ref(eq:bayes) seems useful, eh?
 
-Here's a dumb example of how to use some references: In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @thereferencecanbewhatever If we were interested in baseball data then @citeLahman could be useful. 
+Here's a dumb example of how to use some references: In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @theguardian If we were interested in baseball data then @theguardian could be useful. 
 
 We can use maths by including latex between dollar signs, for instance $\theta$.
 
