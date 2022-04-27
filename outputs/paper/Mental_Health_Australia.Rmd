@@ -60,8 +60,10 @@ In comparison to the feelings of anxiety or stress, 700 females with mental heal
 There are many other factors that affect Australian citizens' experiences with stress and anxiety. This includes intersectionality of race, gender, ethnicity, and sexual orientation. In the survey, 2,168.4 people without mental illness and 538.9 people with mental illness reported experiencing some form of discimination in the past 12 months. This justifies the fact that those with mental health conditions are not as likely to experience oppression because of their illness. For example, a white male with mental illness will have different experiences in navigating daily anxiety and stress than a black woman would. Women, LGBTQ+, and BIPOC experience systematic oppression in a white straight male dominated society. Those who do not identify with these groups may experience difficulties due to their mental illness, but will not face discimination because of their identity. 
 
 ```{r stressors, fig.cap="Male vs Female Stressors", echo = FALSE}
+### Grabbing the stressors ###
 stressors <- subset(female_male_data, Section == "Stressors", select = -c(Section))
 
+### Plotting the Stressors ###
 stressors <- ggplot(stressors, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
   geom_bar(stat="identity", position=position_dodge()) + 
   geom_text(aes(label = `Total persons`), vjust=1.6, color="black",
@@ -75,7 +77,7 @@ stressors + scale_fill_manual(values=c('#d9848e','#84a8d9'))
 
 ## View on Healthcare
 ```{r healthcare, fig.cap="Percent of Australians that agreed the healthcare system can be trusted in 2020", echo = FALSE}
-
+### Pie Chart Based on Secondary Research ###
 percent_trust <- c(76, 24)
 lbls <- c("Agree", "Disagree")
 pct <- round(percent_trust/sum(percent_trust)*100)
@@ -91,17 +93,22 @@ In this survey, we understand the differences between men and women who trust th
 Only until recently, considerations and understandings of mental illness in modern society have been considered. However, a history of societal neglect justifies the lack of trust which both male and female Australians with mental illness obtain.
 
 ```{r mhc-trust, fig.cap="People that strongly agrees most people can be trusted", echo = FALSE}
+### Get trust data on people with mental health conditions ###
 has_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
   select(`Has a mental health condition`, Gender) |>
   rename(`Number of People` = `Has a mental health condition`) |>
   mutate(`Has a mental health condition` = "Yes")
-  
+
+### Get trust data on people without mental health conditions ###  
 no_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
   select(`Does not have a mental health condition`, Gender) |>
   rename(`Number of People` = `Does not have a mental health condition`) |>
   mutate(`Has a mental health condition` = "No")
 
+### Merge data from people with and without mental health conditions ###
 mhc_trust <- merge(x = has_mhc_trust, y = no_mhc_trust, all = TRUE)
+
+### Plot trust data ###
 mhc_trust <- ggplot(mhc_trust, aes(x = `Has a mental health condition`, y = `Number of People`, group = Gender, fill = Gender)) +
   geom_bar(stat="identity", position=position_dodge()) + 
   geom_text(aes(label = `Number of People`), vjust=1.6, color="black",
@@ -128,14 +135,20 @@ trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
 ## Socioeconomic Status
 
 ```{r discrimination, fig.cap="Has experienced discrimination in last 12 months", echo = FALSE}
+### Get discrimination data ###
 person_discrim <- subset(persons_data, Modules == "Has experienced discrimination in last 12 months", select = -c(Section, Modules))
 
-person_discrim <- as.data.frame(t(person_discrim[,-1]))
+### Transpose dataframe ###
+person_discrim <- person_discrim |>
+  tibble::rownames_to_column() |>  
+  pivot_longer(-rowname) |>
+  pivot_wider(names_from=rowname, values_from=value) |>
+  rename(
+    Category = name,
+    "Number of People" = `1`
+  )
 
-person_discrim <- tibble::rownames_to_column(person_discrim, "Category")
-
-names(person_discrim)[names(person_discrim) == "V1"] <- "Number of People"
-
+### Graph discrimination data ###
 person_discrim |>
   ggplot(aes(x = `Category`, y = `Number of People`)) +
   geom_bar(stat="identity", position=position_dodge()) + 
