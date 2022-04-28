@@ -18,12 +18,12 @@ nocite: '@*'
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(tibble)
-library(reshape)
+library(dplyr)
 library(tidyverse)
 library(ggplot2)
-library(kableExtra)
-library(dplyr)
+
+library(tibble)
+library(reshape2)
 ```
 
 ```{r, include=FALSE}
@@ -53,25 +53,36 @@ You can and should cross-reference sections and sub-sections. For instance, Sect
 
 # Data
 
+This paper was written in R, a programming language for statistical computing [@citeR] and uses various R packages for data analysis and manipulation. These packages include readxl [@readxl] for reading the .xlsx file and tidyverse [@tidyverse] and dplyr [@dplyr] for handling the data. The data itself was the 2020 Australia General Social Survey: Summary Results – Tables 3: Persons aged 15 years and over, Social Experiences–By Sex and Health Characteristics obtained from the Australian Bureau of Statistics [@ausstats]. Since the data was an .xlsx file and contained three separate tables (Males, Females, and Persons) in a single sheet, we split the table in excel into three separate sheets. We also took the subheading in each table and created another column titled ‘Section’ in excel to make it easier to convert to a .csv file in R and manipulate the data. 
+
+## Source and Methodology
+
+## Questionnaire Details
+
+
+# Results
+
+# Discussion
+
 ## Stress and Anxiety
 
-In comparison to the feelings of anxiety or stress, 700 females with mental health issues reported “Always” or “Often” to feeling stressed or rushed. This was much higher than males, in which only 300 participants felt consistent stressors or anxiety. Due to societal pressures and expectations, it is extremely likely that women would feel stressors, much more often than men would. According to The Guardian, Australian women encounter stress on a mucher higher level than men do. This is in regards to finances, family, and physical health (The Guardian Reference). Citizens with mental health conditions already experience difficulties from other day activities and events. The addition of a permanent illness will greatly affect the ways Australian men and women approach daily life. 
+In comparison to the feelings of anxiety or stress, 700 females with mental health issues reported “Always” or “Often” to feeling stressed or rushed. This was much higher than males, in which only 300 participants felt consistent stressors or anxiety. Due to societal pressures and expectations, it is extremely likely that women would feel stressors, much more often than men would. According to The Guardian, Australian women encounter stress on a much higher level than men do. This is in regards to finances, family, and physical health (The Guardian Reference). Citizens with mental health conditions already experience difficulties from other day activities and events. The addition of a permanent illness will greatly affect the ways Australian men and women approach daily life. 
 
-There are many other factors that affect Australian citizens' experiences with stress and anxiety. This includes intersectionality of race, gender, ethnicity, and sexual orientation. In the survey, 2,168.4 people without mental illness and 538.9 people with mental illness reported experiencing some form of discimination in the past 12 months. This justifies the fact that those with mental health conditions are not as likely to experience oppression because of their illness. For example, a white male with mental illness will have different experiences in navigating daily anxiety and stress than a black woman would. Women, LGBTQ+, and BIPOC experience systematic oppression in a white straight male dominated society. Those who do not identify with these groups may experience difficulties due to their mental illness, but will not face discimination because of their identity. 
+There are many other factors that affect Australian citizens' experiences with stress and anxiety. This includes intersectionality of race, gender, ethnicity, and sexual orientation. In the survey, 2,168.4 people without mental illness and 538.9 people with mental illness reported experiencing some form of discrimination in the past 12 months. This justifies the fact that those with mental health conditions are not as likely to experience oppression because of their illness. For example, a white male with mental illness will have different experiences in navigating daily anxiety and stress than a black woman would. Women, LGBTQ+, and BIPOC experience systematic oppression in a white straight male dominated society. Those who do not identify with these groups may experience difficulties due to their mental illness, but will not face discimination because of their identity. 
 
 ```{r stressors, fig.cap="Male vs Female Stressors", echo = FALSE}
 ### Grabbing the stressors ###
 stressors <- subset(female_male_data, Section == "Stressors", select = -c(Section))
 
-### Plotting the Stressors ###
-stressors <- ggplot(stressors, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
+### Plotting the stressors ###
+ggplot(stressors, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
   geom_bar(stat="identity", position=position_dodge()) + 
   geom_text(aes(label = `Total persons`), vjust=1.6, color="black",
             position = position_dodge(0.9), size=3.5)+
   theme_minimal() +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 20))
-
-stressors + scale_fill_manual(values=c('#d9848e','#84a8d9'))
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) +
+  ylab("Total Population") +
+  scale_fill_manual(values=c('#d9848e','#84a8d9'))
 
 ```
 
@@ -96,41 +107,44 @@ Only until recently, considerations and understandings of mental illness in mode
 ### Get trust data on people with mental health conditions ###
 has_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
   select(`Has a mental health condition`, Gender) |>
-  rename(`Number of People` = `Has a mental health condition`) |>
+  rename(Population = `Has a mental health condition`) |>
   mutate(`Has a mental health condition` = "Yes")
 
 ### Get trust data on people without mental health conditions ###  
 no_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
   select(`Does not have a mental health condition`, Gender) |>
-  rename(`Number of People` = `Does not have a mental health condition`) |>
+  rename(Population = `Does not have a mental health condition`) |>
   mutate(`Has a mental health condition` = "No")
 
 ### Merge data from people with and without mental health conditions ###
 mhc_trust <- merge(x = has_mhc_trust, y = no_mhc_trust, all = TRUE)
 
 ### Plot trust data ###
-mhc_trust <- ggplot(mhc_trust, aes(x = `Has a mental health condition`, y = `Number of People`, group = Gender, fill = Gender)) +
+mhc_trust <- ggplot(mhc_trust, aes(x = `Has a mental health condition`, y = Population, group = Gender, fill = Gender)) +
   geom_bar(stat="identity", position=position_dodge()) + 
-  geom_text(aes(label = `Number of People`), vjust=1.6, color="black",
+  geom_text(aes(label = Population), vjust=1.6, color="black",
             position = position_dodge(0.9), size=3.5)+
   theme_minimal()
 mhc_trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
 
 ```
 
-```{r trust, fig.cap = "Trust: Feels most people can be trusted", echo = FALSE}
-female_male_trust <- subset(female_male_data, Section == "Feels most people can be trusted")
+```{r trust, fig.cap = "Feels the healthcare system can be trusted", echo = FALSE}
+### Get trust data on people with mental health conditions ###
+female_male_trust <- subset(female_male_data, Section == "Feels the healthcare system can be trusted")
 
 trust <- ggplot(female_male_trust, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
   geom_bar(stat="identity", position=position_dodge()) + 
   geom_text(aes(label=`Total persons`), vjust=1.6, color="black",
             position = position_dodge(0.9), size=3.5)+
   theme_minimal() + 
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 25))
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 25)) +
+  ylab("Total Population")
 
 trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
 
 ```
+
 
 ## Socioeconomic Status
 
@@ -140,24 +154,88 @@ person_discrim <- subset(persons_data, Modules == "Has experienced discriminatio
 
 ### Transpose dataframe ###
 person_discrim <- person_discrim |>
-  tibble::rownames_to_column() |>  
+  tibble::rownames_to_column() |>
   pivot_longer(-rowname) |>
   pivot_wider(names_from=rowname, values_from=value) |>
   rename(
     Category = name,
-    "Number of People" = `1`
+    Population = `1`
   )
 
 ### Graph discrimination data ###
 person_discrim |>
-  ggplot(aes(x = `Category`, y = `Number of People`)) +
+  ggplot(aes(x = `Category`, y = Population)) +
   geom_bar(stat="identity", position=position_dodge()) + 
-  geom_text(aes(label = `Number of People`), vjust=1.6, color="white",
+  geom_text(aes(label = Population), vjust=1.6, color="white",
             position = position_dodge(0.9), size=3.5)+
   theme_minimal() + 
   scale_x_discrete(labels = function(x) str_wrap(x, width = 15))
 
 ```
+
+```{r fig.height = 8, fig.width = 10, fig.cap="Mental Health Conditions vs. Level of highest non-school qualification", echo = FALSE}
+### Get bachelor and discrimination data ###
+persons_edu_bach <- subset(mutate_all(persons_data, as.character), Modules == "Bachelor Degree or above", select = -c(Section))
+### Transpose ###
+persons_edu_bach <- persons_edu_bach |>
+  tibble::rownames_to_column() |>  
+  pivot_longer(-rowname) |>
+  pivot_wider(names_from=rowname, values_from=value) |>
+  mutate("Qualification" = "Bachelor Degree or above") |>
+  slice(-1)
+
+### Get diploma and discrimination data ###
+persons_edu_dip <- subset(mutate_all(persons_data, as.character), Modules == "Advanced Diploma/Diploma or below", select = -c(Section))
+### Transpose ###
+persons_edu_dip <- persons_edu_dip |>
+  tibble::rownames_to_column() |>  
+  pivot_longer(-rowname) |>
+  pivot_wider(names_from=rowname, values_from=value) |>
+  mutate("Qualification" = "Advanced Diploma/Diploma or below") |>
+  slice(-1)
+
+### Get no non-school and discrimination data ###
+persons_edu_none <- subset(mutate_all(persons_data, as.character), Modules == "No non-school qualification", select = -c(Section))
+### Transpose ###
+persons_edu_none <- persons_edu_none |>
+  tibble::rownames_to_column() |>  
+  pivot_longer(-rowname) |>
+  pivot_wider(names_from=rowname, values_from=value) |>
+  mutate("Qualification" = "No non-school qualification") |>
+  slice(-1)
+
+### Merge all education and discrimination data and rename columns###
+persons_edu <- merge (x = persons_edu_none, 
+                      y = merge(x = persons_edu_bach, y = persons_edu_dip, all = TRUE), 
+                      all = TRUE
+                      ) %>%
+  rename (
+    Condition = 1,
+    Population = 2
+  )
+
+persons_edu <- transform(persons_edu, Population = as.numeric(Population))
+
+
+### Graph discrimination data ###
+persons_edu |>
+  ggplot(aes(x = Condition, y = Population, group = Qualification, fill = Qualification)) +
+  coord_flip() + 
+  geom_col(stat="identity", width = 0.8, position=position_dodge(0.8)) + 
+  geom_text(aes(label = Population), hjust = 0, vjust = 0.4, color="black",
+            position = position_dodge(0.8), size=4)+
+  theme_minimal() + 
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 30)) + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), legend.position = "bottom") +
+  guides(fill=guide_legend(nrow=3, byrow=TRUE)) +
+  xlab("Mental Health Condition") +
+  labs(fill='Highest Level of Non-School Qualification') 
+
+```
+
+Non-school qualifications are educational attainments other than those of pre-primary, primary or secondary education qualifications.
+
+
 
 Talk more about it.
 
@@ -176,18 +254,6 @@ Here's a dumb example of how to use some references: In paper we run our analysi
 We can use maths by including latex between dollar signs, for instance $\theta$.
 
 
-# Results
-
-# Discussion
-
-## First discussion point
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
-## Second discussion point
-
-## Third discussion point
-
 ## Weaknesses and next steps
 
 Weaknesses and next steps should also be included.
@@ -198,8 +264,8 @@ Weaknesses and next steps should also be included.
 
 # Appendix {-}
 
+## Supplementary Survey
 
-# Additional details
 
 
 \newpage
