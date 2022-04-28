@@ -7,4 +7,4 @@ The final report can be viewed [here](https://github.com/ChristinaChanYing/Austr
 
 
 ## File Structure
-The R script used for importing the data can be found in '/scripts'. The final pdf, rmarkdown file and references can be found in '/outputs/paper'. 
+The R script used for cleaning the data can be found in '/scripts'. The final pdf, rmarkdown file and references can be found in '/outputs/paper'. 
