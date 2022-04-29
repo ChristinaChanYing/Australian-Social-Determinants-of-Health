@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.8)  28 APR 2022 18:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.8)  29 APR 2022 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -481,81 +481,80 @@ LaTeX Warning: Reference `first-discussion-point' on page 1 undefined on input l
 
 [1
 
-{c:/Users/chris/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<Mental_Health_Australia_files/figure-latex/stressors-1.pdf, id=77, 469.755pt x 325.215pt>
+{c:/Users/chris/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<Mental_Health_Australia_files/figure-latex/stressors-1.pdf, id=81, 469.755pt x 325.215pt>
 File: Mental_Health_Australia_files/figure-latex/stressors-1.pdf Graphic file (type pdf)
 <use Mental_Health_Australia_files/figure-latex/stressors-1.pdf>
-Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/stressors-1.pdf  used on input line 156.
+Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/stressors-1.pdf  used on input line 161.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Mental_Health_Australia_files/figure-latex/healthcare-1.pdf, id=78, 469.755pt x 325.215pt>
+<Mental_Health_Australia_files/figure-latex/healthcare-1.pdf, id=82, 469.755pt x 325.215pt>
 File: Mental_Health_Australia_files/figure-latex/healthcare-1.pdf Graphic file (type pdf)
 <use Mental_Health_Australia_files/figure-latex/healthcare-1.pdf>
-Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/healthcare-1.pdf  used on input line 165.
+Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/healthcare-1.pdf  used on input line 170.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[2] [3 <./Mental_Health_Australia_files/figure-latex/stressors-1.pdf>]
-<Mental_Health_Australia_files/figure-latex/mhc-trust-1.pdf, id=97, 469.755pt x 325.215pt>
+<Mental_Health_Australia_files/figure-latex/mhc-trust-1.pdf, id=83, 469.755pt x 325.215pt>
 File: Mental_Health_Australia_files/figure-latex/mhc-trust-1.pdf Graphic file (type pdf)
 <use Mental_Health_Australia_files/figure-latex/mhc-trust-1.pdf>
-Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/mhc-trust-1.pdf  used on input line 175.
+Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/mhc-trust-1.pdf  used on input line 180.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Mental_Health_Australia_files/figure-latex/trust-1.pdf, id=98, 469.755pt x 325.215pt>
+<Mental_Health_Australia_files/figure-latex/trust-1.pdf, id=84, 469.755pt x 325.215pt>
 File: Mental_Health_Australia_files/figure-latex/trust-1.pdf Graphic file (type pdf)
 <use Mental_Health_Australia_files/figure-latex/trust-1.pdf>
-Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/trust-1.pdf  used on input line 181.
+Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/trust-1.pdf  used on input line 186.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Mental_Health_Australia_files/figure-latex/discrimination-1.pdf, id=99, 469.755pt x 325.215pt>
+<Mental_Health_Australia_files/figure-latex/discrimination-1.pdf, id=85, 469.755pt x 325.215pt>
 File: Mental_Health_Australia_files/figure-latex/discrimination-1.pdf Graphic file (type pdf)
 <use Mental_Health_Australia_files/figure-latex/discrimination-1.pdf>
-Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/discrimination-1.pdf  used on input line 190.
+Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/discrimination-1.pdf  used on input line 195.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 194.
+[3] [4 <./Mental_Health_Australia_files/figure-latex/stressors-1.pdf>] [5 <./Mental_Health_Australia_files/figure-latex/healthcare-1.pdf>] [6 <./Mental_Health_Australia_files/figure-latex/mhc-trust-1.pdf>] [7 <./Mental_Health_Australia_files/figure-latex/trust-1.pdf>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 199.
 (c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<Mental_Health_Australia_files/figure-latex/unnamed-chunk-2-1.pdf, id=100, 722.7pt x 578.16pt>
+<Mental_Health_Australia_files/figure-latex/unnamed-chunk-2-1.pdf, id=137, 722.7pt x 578.16pt>
 File: Mental_Health_Australia_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use Mental_Health_Australia_files/figure-latex/unnamed-chunk-2-1.pdf>
-Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 200.
+Package pdftex.def Info: Mental_Health_Australia_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 205.
 (pdftex.def)             Requested size: 469.76045pt x 375.80836pt.
-[4 <./Mental_Health_Australia_files/figure-latex/healthcare-1.pdf>] [5 <./Mental_Health_Australia_files/figure-latex/mhc-trust-1.pdf>] [6 <./Mental_Health_Australia_files/figure-latex/trust-1.pdf>] [7 <./Mental_Health_Australia_files/figure-latex/discrimination-1.pdf>] [8 <./Mental_Health_Australia_files/figure-latex/unnamed-chunk-2-1.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 212.
-[9] [10]
-Underfull \hbox (badness 1552) in paragraph at lines 246--248
-\T1/lmr/m/n/10 Australia, Com-mon-wealth of. 2020. \T1/lmr/m/it/10 Aus-tralian Bu-reau of Statis-tics\T1/lmr/m/n/10 . []$https : / / www . abs . gov . au /
+(Font)              <7> on input line 217.
+[8 <./Mental_Health_Australia_files/figure-latex/discrimination-1.pdf>] [9 <./Mental_Health_Australia_files/figure-latex/unnamed-chunk-2-1.pdf>] [10] [11]
+Underfull \hbox (badness 1184) in paragraph at lines 251--253
+\T1/lmr/m/n/10 Australia, Com-mon-wealth of. 2020a. \T1/lmr/m/it/10 Aus-tralian Bu-reau of Statis-tics\T1/lmr/m/n/10 . []$https : / / www . abs . gov . au /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--248
+Underfull \hbox (badness 10000) in paragraph at lines 251--253
 \T1/lmr/m/n/10 statistics / people / people -[] and -[] communities / general -[] social -[] survey -[] summary -[] results -[] australia / 2020 # data -[]
  []
 
 
-Underfull \hbox (badness 1286) in paragraph at lines 252--254
+Underfull \hbox (badness 1286) in paragraph at lines 260--262
 []\T1/lmr/m/n/10 Press, Aus-tralian As-so-ci-ated. 2014. ``Aus-tralian Women Feel More Stressed Than Men, Men-
  []
 
 
-Underfull \hbox (badness 1997) in paragraph at lines 252--254
+Underfull \hbox (badness 1997) in paragraph at lines 260--262
 \T1/lmr/m/n/10 tal Health Sur-vey Finds.'' Guardian News; Me-dia. []$https : / / www . theguardian . com / australia -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--254
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
 \T1/lmr/m/n/10 news / 2014 / nov / 09 / australian -[] women -[] feel -[] more -[] stressed -[] than -[] men -[] mental -[] health -[] survey -[] ^^\nds# : ~ :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--254
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
 \T1/lmr/m/n/10 text = Australian % 20women % 20feel % 20more % 20stressed % 20than % 20men % 2C % 20mental % 20health %
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--254
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
 \T1/lmr/m/n/10 20survey % 20^^\nds,[] -[] This % 20article % 20is & text = Most % 20Australians % 20say % 20stress % 20is ,[] new %
  []
 
-[11] (./Mental_Health_Australia.aux)
+[12] (./Mental_Health_Australia.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -563,18 +562,18 @@ Package rerunfilecheck Info: File `Mental_Health_Australia.out' has not changed.
 (rerunfilecheck)             Checksum: 52E21363CF6AFB61E91BAFC3B9BE9604;1679.
  ) 
 Here is how much of TeX's memory you used:
- 11354 strings out of 480238
- 179440 string characters out of 5894272
- 467185 words of memory out of 5000000
+ 11356 strings out of 480238
+ 179466 string characters out of 5894272
+ 470186 words of memory out of 5000000
  29049 multiletter control sequences out of 15000+600000
  535875 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,6n,63p,1216b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,6n,63p,1450b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/chris/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Mental_Health_Australia.pdf (11 pages, 314304 bytes).
+Output written on Mental_Health_Australia.pdf (12 pages, 317946 bytes).
 PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
- 232 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
+ 295 PDF objects out of 1000 (max. 8388607)
+ 238 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
  135 words of extra memory for PDF output out of 10000 (max. 10000000)
 
