@@ -6,7 +6,7 @@ author:
   - Reese Halfyard
 thanks: "Code and data are available at: https://github.com/ChristinaChanYing/Australian-Social-Determinants-of-Health"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "This paper investigates how much trust Australians have in the Australian healthcare system and how gender and socioeconomic status influences their mental health and level of trust. The data analyzed in this paper is the 2020 Australia General Social Survey: Summary Results obtained from the Australian Bureau of Statistics. Within this paper, we visualize different contributors to socio-economic advantage, including gender, socioeconomic status, and health. We found that generally: females are more likely to be affected by stressors; gender and mental health affects the population’s trust for others in society; more females trust the Australian healthcare system than males, health does not necessarily reflect why a population is benign discriminate on; and lastly, those who had physical and mental health conditions reported achieving a lower levels of education than those without.  It is important to note that the dataset used may not be the most accurate representation of Australian mental health and dependency on healthcare since the pandemic has led to a substantial increase in mental health conditions. "
 output:
   bookdown::pdf_document2:
     fig_caption: yes
@@ -55,7 +55,7 @@ It is always important to understand the mental and physical health of a country
 
 In this paper, we examine the stressors, trust levels (of other people and the healthcare system), mental health conditions, and the discrimination experienced by the Australian population and correlate them to gender (specifically male vs. female), and socioeconomic factors such as their household income, age, and labour force status. 
 
-In \@ref(Data) we review the data source used in this paper and examine its methodology and questionnaire. We discuss the data survey’s key features, strengths, and weaknesses and examine the In section 3, we go into a discussion over the three most interesting points of the paper, its weaknesses and the potential next steps for it; all the while discussing ethics, biases, and references to the literature. We discuss how stressors affect each gender, the sampled populations' views on Australia’s healthcare system, and how socioeconomic status presents specific disadvantages. The last section of the paper includes references from the literature and additional resources to supplement the paper, such as the supplementary survey as part of the appendix. 
+In section \@ref(data) we review the data source used in this paper and examine its methodology and questionnaire. We discuss the data survey’s key features, strengths, and weaknesses and examine the In section \@ref(results), we go into a discussion over the three most interesting points of the paper, its weaknesses and the potential next steps for it; all the while discussing ethics, biases, and references to the literature. We discuss how stressors affect each gender, the sampled populations' views on Australia’s healthcare system, and how socioeconomic status presents specific disadvantages. The last section of the paper section \@ref(discussion) includes references from the literature and additional resources to supplement the paper, such as the supplementary survey as part of the appendix. 
 
 
 # Data
@@ -66,6 +66,7 @@ This paper was written in R, a programming language for statistical computing [@
 The key features of the dataset we utilized for this analysis was procured by the Australian Bureau of Statistics, sending out the General Social Survey to Australian residents over the age of 15 over a period of 4 months from June to September 2020 [@ausstatsmethods]. Since this survey was conducted at the start of the COVID-19 pandemic, all surveys were completed online or by a phone interview, excluding any opportunities for face-to-face interviews or paper copies. Sample recruitment was conducted randomly from rural to urban areas, choosing to target lower socio-economic areas and randomly selecting individuals in one household to complete the survey in these target areas. Unfortunately, data could not be collected for households residing in the most remote parts of the country. More than 5000 households completed this survey across Australia, with 3 764 completed online and 1 540 completed over the phone. This accounts for 60.5% response rate, and due to the nature of the pandemic, no face-to-face follow ups were conducted for non-responses, leading to an unusually high non-response rate of 37.9%. The rest of the surveys sent were either refused or partly-responded to. 
  
 With the key features of the methodology highlighted, we can further discuss its strengths and weaknesses. Since the survey targeted areas with lower socio-economic status (SES) to see how residents of these areas would be more vulnerable to socio-economic disadvantage, there are a number of key demographics that would be excluded. Namely, those that reside in non-private dwellings such as hospitals and nursing homes. If this is the case, exclusion of such households presents a bias to the survey and possibly skews survey results in some way because the dataset we chose from this social survey included questions about trust in the healthcare system and self-reported mental health conditions. If Australian residents that live in hospitals and nursing homes were excluded and could not share their lived experiences about the hospitals and nursing homes they lived in, then the dataset does not truly reflect an accurate sample of the population in which it is targeting and thus is a weakness to the report. Living in hospitals, nursing homes, and other non-private dwellings already indicate a sort of instability in individuals’ housing conditions, which could indicate these socio-economic disadvantages. 
+
 Additionally, due to the unfortunate timing of the survey at the start of the COVID-19 pandemic in 2020, the social survey had an unusually high percentage of non-responses due to the inability of the Bureau of Statistics to follow-up to non-responses in person. This means that survey is vulnerable to non-response bias where those who chose to participate may not necessarily represent the population from which they were sampled. Those who filled it out may have had access to the internet whereas those who did not fill out may not have had access to public services that allowed them to have access to the internet, such as a public library. This tradeoff presents a non-response bias that could be seen as a weakness to the dataset. However, the strength of this survey is evident in its disclosure of such limitations. They made clear that comparisons between this year and previous surveys should be done with care as this year is highly unusual. They also did a good job targeting their sample population towards a specific SES area so as to accurately reflect the aims of the study. If they had sampled all SES, high and low, then the responses may not have uncovered responses from individuals experiencing socio-economic disadvantages. Overall, the study’s methodology was strong, sampling data from an accurate part of the population and presenting enough random sampling to remove as much bias as they can. 
 
 
@@ -174,7 +175,7 @@ person_discrim |>
 In Figure \@ref(fig:discrimination), we wanted to visualize the portion of the population who have experienced discriminination in the last 12 months and their physical and mental health conditions. For those who have experienced discrimination in the last 12 months, 2168.4 of them did not have a mental health condition, while 538.9 did, showing a lower proportion of people with mental health that have recently experienced discimination. A similar number of people who do and do not have a long term health condition reported experiencing discrimination in the last 12 months, showing no difference or a slight difference in discimination experiences with or without long term health conditions. There were also more people without a disability that reported experiencing discimination in the last 12 months, than did those with a disability. However, it is important to remember that correlation does not mean causation, and perhaps there were just more people in the sample population that did not have a disability, long term health condition, or mental health condition than those who did have them, presenting a sampling bias when reporting raw numbers. 
 
 
-```{r edu, fig.height = 8, fig.width = 10, fig.cap="Mental Health Conditions vs. Level of highest non-school qualification", echo = FALSE}
+```{r edu, fig.height = 8, fig.width = 10, fig.cap="Mental Health Conditions vs. Level of highest non-school qualification", echo = FALSE, warning = FALSE}
 ### Get bachelor and discrimination data ###
 persons_edu_bach <- subset(mutate_all(persons_data, as.character), Modules == "Bachelor Degree or above", select = -c(Section))
 ### Transpose ###
@@ -247,19 +248,8 @@ There are many other factors that affect Australian citizens' experiences with s
 
 
 ## View on Healthcare
-```{r healthcare, fig.cap="Percent of Australians that agreed the healthcare system can be trusted in 2020", echo = FALSE}
-### Pie Chart Based on Secondary Research ###
-percent_trust <- c(76, 24)
-lbls <- c("Agree", "Disagree")
-pct <- round(percent_trust/sum(percent_trust)*100)
-lbls <- paste(lbls, pct) # add percents to labels
-lbls <- paste(lbls,"%",sep="") # ad % to labels
-pie(percent_trust, labels = lbls, col=c("#bce067", "#ffbd58"), main = "The healthcare system can be trusted")
 
-```
-
-
-In this survey, we understand the differences between men and women who trust the healthcare system with and without mental health conditions. According to Figure 2, this is quite a drastic contrast. 995 women with mental health conditions reported that they have trust among most people, and men sat slightly lower, with 519.7 people. Men without mental illness are at 5,563, whereas women without are 5,343. The key question is why is the amount of trust so much higher in those without mental illness, than those with? Lack of trust in most people equates to common everyday services, including healthcare and treatment. In order to understand the lack of trust that those with mental illness or disabilities have regarding the healthcare system, we must look at history. Up until a few decades ago, the treatment of those with bipolar disorder, depression, anxiety, and other common illnesses, were through a myriad of inhumane theories and practices. In 2006, the Bureau of Justice Statistics reported that “705,600 mentally ill men were incarcerated in the state prison system, and another 78,800 were incarcerated in the federal prison system” [@opentextbc].
+In this survey, we understand the differences between men and women who trust the healthcare system with and without mental health conditions. According to Figure \@ref(fig:trust), this is quite a drastic contrast. 995 women with mental health conditions reported that they have trust among most people, and men sat slightly lower, with 519.7 people. Men without mental illness are at 5,563, whereas women without are 5,343. The key question is why is the amount of trust so much higher in those without mental illness, than those with? Lack of trust in most people equates to common everyday services, including healthcare and treatment. In order to understand the lack of trust that those with mental illness or disabilities have regarding the healthcare system, we must look at history. Up until a few decades ago, the treatment of those with bipolar disorder, depression, anxiety, and other common illnesses, were through a myriad of inhumane theories and practices. In 2006, the Bureau of Justice Statistics reported that “705,600 mentally ill men were incarcerated in the state prison system, and another 78,800 were incarcerated in the federal prison system” [@opentextbc].
 
 Only until recently, considerations and understandings of mental illness in modern society have been considered. However, a history of societal neglect justifies the lack of trust which both male and female Australians with mental illness obtain.
 
@@ -267,9 +257,6 @@ Only until recently, considerations and understandings of mental illness in mode
 ## Socioeconomic Status
 
 
-## Weaknesses and next steps
-
-Weaknesses and next steps should also be included.
 
 \newpage
 
