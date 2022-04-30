@@ -1,6 +1,5 @@
 ---
-title: "Mental Health in Australia"
-subtitle: "My subtitle if needed"
+title: "Scope of Australian Social Survey Inadequate in Representing Residents’ Mental Health and Socioeconomic Standards of Living during COVID-19"
 author: 
   - Christina Chan-Ying
   - Yan Dumalag
@@ -9,7 +8,10 @@ thanks: "Code and data are available at: https://github.com/ChristinaChanYing/Au
 date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
 output:
-  bookdown::pdf_document2
+  bookdown::pdf_document2:
+    fig_caption: yes
+    includes:  
+      in_header: my_header.tex
 toc: FALSE
 bibliography: references.bib
 nocite: '@*'
@@ -49,7 +51,12 @@ female_male_data <-
 ```
 # Introduction
 
-You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
+It is always important to understand the mental and physical health of a country’s population, as this is the first step in trying to find pain points and exploring opportunities for improving systems involved in the experiences of residents there. In Australia, health is a hot topic that has been seriously exacerbated by the COVID-19 pandemic. When the Bureau of Statistics conducted the once-in-four-years survey at the start of the pandemic, it would be apparent that this survey would be different as the conditions would be affected by pandemic measures and data would possibly be unusual due to the physical and mental health effects of the pandemic. Since this is the case, the survey presents an unusual snapshot of the experiences of Australia’s population during a pandemic, and the enduring social characteristics that remain evident through their views on healthcare and trust for others. These are important topics to analyze and discuss as we were curious to see just how different the experiences are for the opposite genders when it comes to mental health conditions, trusting others and the healthcare system, receiving family/community support, experiences of discmination, and effects of contributing stressors. Through this paper, we wanted to see whether or not the data supports or rejects our assumptions.
+
+In this paper, we examine the stressors, trust levels (of other people and the healthcare system), mental health conditions, and the discrimination experienced by the Australian population and correlate them to gender (specifically male vs. female), and socioeconomic factors such as their household income, age, and labour force status. 
+
+In \@ref(Data) we review the data source used in this paper and examine its methodology and questionnaire. We discuss the data survey’s key features, strengths, and weaknesses and examine the In section 3, we go into a discussion over the three most interesting points of the paper, its weaknesses and the potential next steps for it; all the while discussing ethics, biases, and references to the literature. We discuss how stressors affect each gender, the sampled populations' views on Australia’s healthcare system, and how socioeconomic status presents specific disadvantages. The last section of the paper includes references from the literature and additional resources to supplement the paper, such as the supplementary survey as part of the appendix. 
+
 
 # Data
 
@@ -73,49 +80,27 @@ The questions asked had a good selection of options for the participant to choos
 The questions were explicit and easy to read and understand. Many of the questions included an example to ensure that the participant understood what the question was asking and that they know how to properly answer it. The questions also had a good flow and order to them. For instance, in “Module 7.2: Contact with Family and Friends (CWF)” they would start by asking “In the last 3 months have you seen family or friends who do not live with you in person?”, then follow up with asking other questions relating to it such as “How often have you seen them in person in the last 3 months?” or “In the last 3 months, have you used any of these other types of contact with family or friends [CWF_WS1]?”. 
 
 # Results
+We chose to analyze a subset of the data titled Social Experiences–By Sex and Health Characteristics from the 2020 Australia General Social Survey. From this survey, we wanted to see how much trust Australians have in their healthcare system and whether or not gender and socioeconomic status influences their mental health and level of trust. 
 
-# Discussion
-
-## Stress and Anxiety
-
-In comparison to the feelings of anxiety or stress, 700 females with mental health issues reported “Always” or “Often” to feeling stressed or rushed. This was much higher than males, in which only 300 participants felt consistent stressors or anxiety. Due to societal pressures and expectations, it is extremely likely that women would feel stressors, much more often than men would. According to The Guardian, Australian women encounter stress on a much higher level than men do. This is in regards to finances, family, and physical health (The Guardian Reference). Citizens with mental health conditions already experience difficulties from other day activities and events. The addition of a permanent illness will greatly affect the ways Australian men and women approach daily life. 
-
-There are many other factors that affect Australian citizens' experiences with stress and anxiety. This includes intersectionality of race, gender, ethnicity, and sexual orientation. In the survey, 2,168.4 people without mental illness and 538.9 people with mental illness reported experiencing some form of discrimination in the past 12 months. This justifies the fact that those with mental health conditions are not as likely to experience oppression because of their illness. For example, a white male with mental illness will have different experiences in navigating daily anxiety and stress than a black woman would. Women, LGBTQ+, and BIPOC experience systematic oppression in a white straight male dominated society. Those who do not identify with these groups may experience difficulties due to their mental illness, but will not face discimination because of their identity. 
-
-```{r stressors, fig.cap="Male vs Female Stressors", echo = FALSE}
+```{r stressors, fig.cap="Likelihood of Stressors Affecting Each Gender", echo = FALSE}
 ### Grabbing the stressors ###
 stressors <- subset(female_male_data, Section == "Stressors", select = -c(Section))
 
 ### Plotting the stressors ###
 ggplot(stressors, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
   geom_bar(stat="identity", position=position_dodge()) + 
-  geom_text(aes(label = `Total persons`), vjust=1.6, color="black",
+  geom_text(aes(label = `Total persons`), vjust=-0.5, color="black",
             position = position_dodge(0.9), size=3.5)+
   theme_minimal() +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) +
-  ylab("Total Population") +
+  ylab("Population") + xlab("Stressors") +
   scale_fill_manual(values=c('#d9848e','#84a8d9'))
 
 ```
 
-## View on Healthcare
-```{r healthcare, fig.cap="Percent of Australians that agreed the healthcare system can be trusted in 2020", echo = FALSE}
-### Pie Chart Based on Secondary Research ###
-percent_trust <- c(76, 24)
-lbls <- c("Agree", "Disagree")
-pct <- round(percent_trust/sum(percent_trust)*100)
-lbls <- paste(lbls, pct) # add percents to labels
-lbls <- paste(lbls,"%",sep="") # ad % to labels
-pie(percent_trust, labels = lbls, col=c("#bce067", "#ffbd58"), main = "The healthcare system can be trusted")
+In Figure \@ref(fig:stressors), we wanted to visualize the likelihood of stressors affecting each gender. For each stressor, participants were asked how likely they were affected by them. When feeling rushed for time, more females felt they were always or often feeling rushed more than males did. When getting to places, slightly more females reported feeling like they always or often had difficulty getting to places they needed more than males. More females also experienced at least one personal stressor in the last 12 months from the survey than males. On the other hand, more males reported having difficulty accessing service providers than females did. Generally, females are more likely to be affected by stressors. 
 
-```
-
-
-In this survey, we understand the differences between men and women who trust the healthcare system with and without mental health conditions. According to Figure 2, this is quite a drastic contrast. 995 women with mental health conditions reported that they have trust among most people, and men sat slightly lower, with 519.7 people. Men without mental illness are at 5,563, whereas women without are 5,343. The key question is why is the amount of trust so much higher in those without mental illness, than those with? Lack of trust in most people equates to common everyday services, including healthcare and treatment. In order to understand the lack of trust that those with mental illness or disabilities have regarding the healthcare system, we must look at history. Up until a few decades ago, the treatment of those with bipolar disorder, depression, anxiety, and other common illnesses, were through a myriad of inhumane theories and practices. In 2006, the Bureau of Justice Statistics reported that “705,600 mentally ill men were incarcerated in the state prison system, and another 78,800 were incarcerated in the federal prison system” [@opentextbc].
-
-Only until recently, considerations and understandings of mental illness in modern society have been considered. However, a history of societal neglect justifies the lack of trust which both male and female Australians with mental illness obtain.
-
-```{r mhc-trust, fig.cap="People that strongly agrees most people can be trusted", echo = FALSE}
+```{r mhc-trust, fig.cap="Proportion of People by Gender and Mental Health Conditions Who Have Strong Trust for Others", echo = FALSE}
 ### Get trust data on people with mental health conditions ###
 has_mhc_trust <- subset(female_male_data, Section == "Feels most people can be trusted" & Modules == "Strongly agree / Somewhat agree") |>
   select(`Has a mental health condition`, Gender) |>
@@ -134,33 +119,34 @@ mhc_trust <- merge(x = has_mhc_trust, y = no_mhc_trust, all = TRUE)
 ### Plot trust data ###
 mhc_trust <- ggplot(mhc_trust, aes(x = `Has a mental health condition`, y = Population, group = Gender, fill = Gender)) +
   geom_bar(stat="identity", position=position_dodge()) + 
-  geom_text(aes(label = Population), vjust=1.6, color="black",
+  geom_text(aes(label = Population), vjust=-0.5, color="black",
             position = position_dodge(0.9), size=3.5)+
   theme_minimal()
 mhc_trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
 
 ```
 
-```{r trust, fig.cap = "Feels the healthcare system can be trusted", echo = FALSE}
+In Figure \@ref(fig:mhc-trust), we wanted to visualize the proportion of the population by gender and their mental health conditions who strongly felt that they agreed in the perception that most people can be trusted. This self-reported question indicates at the most basic level how individuals perceive others and the amount of trust that individuals have for others. This subset of the data was taken from a list of answers of the overall topic of trust for others. Other answers for this topic included “Agree”, “Neither agree nor disagree”, “Disagree”, and “Strongly disagree.” For the portion of people that strongly agreed that most people can be trusted, we segregated them into the two genders: male or female. For each gender, we wanted to visualize which portions had a mental health condition and which did not. More male survey participants that did not have a mental health condition strongly agreed that most people can be trusted, more than females reported they did. For participants that self-reported a mental health condition, more females strongly agreed that most people can be trusted. By comparing the perception of genders with their mental health conditions, we were able to visualize just how much gender and mental health affects the population’s trust for others in society. 
+
+```{r trust, fig.cap = "Proportion of population by gender and their trust on the healthcare system", echo = FALSE}
 ### Get trust data on people with mental health conditions ###
 female_male_trust <- subset(female_male_data, Section == "Feels the healthcare system can be trusted")
 
 trust <- ggplot(female_male_trust, aes(x = Modules, y = `Total persons`, group = Gender, fill = Gender)) +
   geom_bar(stat="identity", position=position_dodge()) + 
-  geom_text(aes(label=`Total persons`), vjust=1.6, color="black",
+  geom_text(aes(label=`Total persons`), vjust=-0.5, color="black",
             position = position_dodge(0.9), size=3.5)+
   theme_minimal() + 
   scale_x_discrete(labels = function(x) str_wrap(x, width = 25)) +
-  ylab("Total Population")
+  ylab("Population")
 
 trust + scale_fill_manual(values=c('#d9848e','#84a8d9'))
 
 ```
 
+In Figure \@ref(fig:trust), we wanted to visualize the proportion of the population by gender and their trust on the healthcare system. We picked three answers out of the five possible ones on the Likert system to represent, choosing from Strongly Agrees to Strongly Disagrees. For these three answers, we wanted to compare by gender how the population felt about trusting Australia’s healthcare system. For those that had strong feelings of agreement (“Strongly agree/Somewhat agree”), more females reported agreeing to trusting the healthcare system. On the other hand, slightly less females reported that they strongly disagree/somewhat disagree with the idea that they could trust the healthcare system. These two answers corroborate the key result that more females have mostly feelings of trust towards the Australian healthcare system more than males did. In the less extreme parts of the spectrum where participants neither agreed or disagreed to the idea of trusting the healthcare system, still slightly more females felt neutral about the idea. 
 
-## Socioeconomic Status
-
-```{r discrimination, fig.cap="Has experienced discrimination in last 12 months", echo = FALSE}
+```{r discrimination, fig.cap="Physical and mental health conditions for population who has experienced discrimination in the last 12 months", echo = FALSE}
 ### Get discrimination data ###
 person_discrim <- subset(persons_data, Modules == "Has experienced discrimination in last 12 months", select = -c(Section, Modules))
 
@@ -178,14 +164,17 @@ person_discrim <- person_discrim |>
 person_discrim |>
   ggplot(aes(x = `Category`, y = Population)) +
   geom_bar(stat="identity", position=position_dodge()) + 
-  geom_text(aes(label = Population), vjust=1.6, color="white",
+  geom_text(aes(label = Population), vjust=-0.5, color="black",
             position = position_dodge(0.9), size=3.5)+
   theme_minimal() + 
   scale_x_discrete(labels = function(x) str_wrap(x, width = 15))
 
 ```
 
-```{r fig.height = 8, fig.width = 10, fig.cap="Mental Health Conditions vs. Level of highest non-school qualification", echo = FALSE}
+In Figure \@ref(fig:discrimination), we wanted to visualize the portion of the population who have experienced discriminination in the last 12 months and their physical and mental health conditions. For those who have experienced discrimination in the last 12 months, 2168.4 of them did not have a mental health condition, while 538.9 did, showing a lower proportion of people with mental health that have recently experienced discimination. A similar number of people who do and do not have a long term health condition reported experiencing discrimination in the last 12 months, showing no difference or a slight difference in discimination experiences with or without long term health conditions. There were also more people without a disability that reported experiencing discimination in the last 12 months, than did those with a disability. However, it is important to remember that correlation does not mean causation, and perhaps there were just more people in the sample population that did not have a disability, long term health condition, or mental health condition than those who did have them, presenting a sampling bias when reporting raw numbers. 
+
+
+```{r edu, fig.height = 8, fig.width = 10, fig.cap="Mental Health Conditions vs. Level of highest non-school qualification", echo = FALSE}
 ### Get bachelor and discrimination data ###
 persons_edu_bach <- subset(mutate_all(persons_data, as.character), Modules == "Bachelor Degree or above", select = -c(Section))
 ### Transpose ###
@@ -245,25 +234,37 @@ persons_edu |>
 
 ```
 
-Non-school qualifications are educational attainments other than those of pre-primary, primary or secondary education qualifications.
+Lastly, in Figure \@ref(fig:edu), we wanted to visualize the proportion of the population’s physical and mental health conditions side-by-side with their level of highest non-school qualifications. For those who do not have a disability, the highest number of the sampled population achieved a Bachelor degree or above with 5, 310 participants who reported so. The least number of people who did not have a disability reported achieving an Advanced Diploma/Diploma or below. For those that did have a disability, the most number of people reported having no non-school qualifications. Less number of people achieved a Bachelor Degree or above. In comparing the different physical conditions, this data shows that those who did have a disability had less individuals reporting having achieved a Bachelor Degree or above; indicating either less access to higher education or a choice to pursue no school or the tendency to choose to pursue advanced diplomas instead of a degree. For participants that did not have a mental health condition, more reported achieving a Bachelor Degree; whereas, for those who did have a mental health condition, more reported having achieved an advanced diploma/diploma or below. For participants who did not have a long term condition, more reported having achieved a Bachelor Degree; whereas, for those who did have a long term condition, more reported having achieved no further education. The answers show a pretty consistent pattern, where those who did not have a physical or mental health condition achieved higher education in reporting having a Bachelor Degree. For those who did have a physical or mental health condition, most reported having achieved an Advanced Diploma/Diploma or below, or having no non-school qualifications. This shows a socio-economic disadvantage based for those who have physical and mental health conditions. 
+
+# Discussion
+
+## Stress and Anxiety
+
+In comparison to the feelings of anxiety or stress, 700 females with mental health issues reported “Always” or “Often” to feeling stressed or rushed. This was much higher than males, in which only 300 participants felt consistent stressors or anxiety. Due to societal pressures and expectations, it is extremely likely that women would feel stressors, much more often than men would. According to The Guardian, Australian women encounter stress on a much higher level than men do. This is in regards to finances, family, and physical health (The Guardian Reference). Citizens with mental health conditions already experience difficulties from other day activities and events. The addition of a permanent illness will greatly affect the ways Australian men and women approach daily life. 
+
+There are many other factors that affect Australian citizens' experiences with stress and anxiety. This includes intersectionality of race, gender, ethnicity, and sexual orientation. In the survey, 2,168.4 people without mental illness and 538.9 people with mental illness reported experiencing some form of discrimination in the past 12 months. This justifies the fact that those with mental health conditions are not as likely to experience oppression because of their illness. For example, a white male with mental illness will have different experiences in navigating daily anxiety and stress than a black woman would. Women, LGBTQ+, and BIPOC experience systematic oppression in a white straight male dominated society. Those who do not identify with these groups may experience difficulties due to their mental illness, but will not face discimination because of their identity. 
 
 
 
-Talk more about it.
+## View on Healthcare
+```{r healthcare, fig.cap="Percent of Australians that agreed the healthcare system can be trusted in 2020", echo = FALSE}
+### Pie Chart Based on Secondary Research ###
+percent_trust <- c(76, 24)
+lbls <- c("Agree", "Disagree")
+pct <- round(percent_trust/sum(percent_trust)*100)
+lbls <- paste(lbls, pct) # add percents to labels
+lbls <- paste(lbls,"%",sep="") # ad % to labels
+pie(percent_trust, labels = lbls, col=c("#bce067", "#ffbd58"), main = "The healthcare system can be trusted")
 
-Also bills and their average (Figure \@ref(fig:stressors)). (Notice how you can change the height and width so they don't take the whole page?)
+```
 
-Talk way more about it. 
 
-\begin{equation}
-Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
-\end{equation}
+In this survey, we understand the differences between men and women who trust the healthcare system with and without mental health conditions. According to Figure 2, this is quite a drastic contrast. 995 women with mental health conditions reported that they have trust among most people, and men sat slightly lower, with 519.7 people. Men without mental illness are at 5,563, whereas women without are 5,343. The key question is why is the amount of trust so much higher in those without mental illness, than those with? Lack of trust in most people equates to common everyday services, including healthcare and treatment. In order to understand the lack of trust that those with mental illness or disabilities have regarding the healthcare system, we must look at history. Up until a few decades ago, the treatment of those with bipolar disorder, depression, anxiety, and other common illnesses, were through a myriad of inhumane theories and practices. In 2006, the Bureau of Justice Statistics reported that “705,600 mentally ill men were incarcerated in the state prison system, and another 78,800 were incarcerated in the federal prison system” [@opentextbc].
 
-Equation \@ref(eq:bayes) seems useful, eh?
+Only until recently, considerations and understandings of mental illness in modern society have been considered. However, a history of societal neglect justifies the lack of trust which both male and female Australians with mental illness obtain.
 
-Here's a dumb example of how to use some references: In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @theguardian If we were interested in baseball data then @theguardian could be useful. 
 
-We can use maths by including latex between dollar signs, for instance $\theta$.
+## Socioeconomic Status
 
 
 ## Weaknesses and next steps
