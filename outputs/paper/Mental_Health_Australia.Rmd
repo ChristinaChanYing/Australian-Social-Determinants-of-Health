@@ -12,7 +12,7 @@ output:
     fig_caption: yes
     includes:  
       in_header: my_header.tex
-toc: FALSE
+toc: TRUE
 bibliography: references.bib
 nocite: '@*'
 ---
@@ -23,9 +23,10 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
-
+library(kableExtra)
 library(tibble)
 library(reshape2)
+library(knitr)
 ```
 
 ```{r, include=FALSE}
@@ -53,14 +54,12 @@ female_male_data <-
 
 It is always important to understand the mental and physical health of a country’s population, as this is the first step in trying to find pain points and exploring opportunities for improving systems involved in the experiences of residents there. In Australia, health is a hot topic that has been seriously exacerbated by the COVID-19 pandemic. When the Bureau of Statistics conducted the once-in-four-years survey at the start of the pandemic, it would be apparent that this survey would be different as the conditions would be affected by pandemic measures and data would possibly be unusual due to the physical and mental health effects of the pandemic. Since this is the case, the survey presents an unusual snapshot of the experiences of Australia’s population during a pandemic, and the enduring social characteristics that remain evident through their views on healthcare and trust for others. These are important topics to analyze and discuss as we were curious to see just how different the experiences are for the opposite genders when it comes to mental health conditions, trusting others and the healthcare system, receiving family/community support, experiences of discmination, and effects of contributing stressors. Through this paper, we wanted to see whether or not the data supports or rejects our assumptions.
 
-In this paper, we examine the stressors, trust levels (of other people and the healthcare system), mental health conditions, and the discrimination experienced by the Australian population and correlate them to gender (specifically male vs. female), and socioeconomic factors such as their household income, age, and labour force status. 
-
-In section \@ref(data) we review the data source used in this paper and examine its methodology and questionnaire. We discuss the data survey’s key features, strengths, and weaknesses and examine the In section \@ref(results), we go into a discussion over the three most interesting points of the paper, its weaknesses and the potential next steps for it; all the while discussing ethics, biases, and references to the literature. We discuss how stressors affect each gender, the sampled populations' views on Australia’s healthcare system, and how socioeconomic status presents specific disadvantages. The last section of the paper section \@ref(discussion) includes references from the literature and additional resources to supplement the paper, such as the supplementary survey as part of the appendix. 
+In this paper, we examine the stressors, trust levels (of other people and the healthcare system), mental health conditions, and the discrimination experienced by the Australian population and correlate them to gender (specifically male vs. female), and socioeconomic factors such as their household income, age, and labour force status. In section \@ref(data) we review the data source used in this paper and examine its methodology and questionnaire. We discuss the data survey’s key features, strengths, and weaknesses and examine the In section \@ref(results), we go into a discussion over the three most interesting points of the paper, its weaknesses and the potential next steps for it; all the while discussing ethics, biases, and references to the literature. We discuss how stressors affect each gender, the sampled populations' views on Australia’s healthcare system, and how socioeconomic status presents specific disadvantages. The last section of the paper section \@ref(discussion) includes references from the literature and additional resources to supplement the paper, such as the supplementary survey as part of the appendix. 
 
 
 # Data
 
-This paper was written in R, a programming language for statistical computing [@citeR] and uses various R packages for data analysis and manipulation. These packages include readxl [@readxl] for reading the .xlsx file and tidyverse [@tidyverse] and dplyr [@dplyr] for handling the data. The data itself was the 2020 Australia General Social Survey: Summary Results – Tables 3: Persons aged 15 years and over, Social Experiences–By Sex and Health Characteristics obtained from the Australian Bureau of Statistics [@ausstats]. Since the data was an .xlsx file and contained three separate tables (Males, Females, and Persons) in a single sheet, we split the table in excel into three separate sheets. We also took the subheading in each table and created another column titled ‘Section’ in excel to make it easier to convert to a .csv file in R and manipulate the data. 
+This paper was written in R, a programming language for statistical computing [@citeR] and uses various R packages for data analysis and manipulation. These packages include readxl [@readxl] for reading the .xlsx file and tidyverse [@tidyverse] and dplyr [@dplyr] for handling the data. Knitr [@knitr] and kableExtra [@kableExtra] to construct and style tables, while tibble [@tibble] was used to handle tibbles and reshape2 [@reshape] was used to transform the data between wide and long formats. The data itself was the 2020 Australia General Social Survey: Summary Results – Tables 3: Persons aged 15 years and over, Social Experiences–By Sex and Health Characteristics obtained from the Australian Bureau of Statistics [@ausstats]. Since the data was a .xlsx file and contained three separate tables (Males, Females, and Persons) in a single sheet, we split the table in excel into three separate sheets. We also took the subheading in each table and created another column titled ‘Section’ in excel to make it easier to convert to a .csv file in R and manipulate the data. 
 
 ## Source and Methodology
 The key features of the dataset we utilized for this analysis was procured by the Australian Bureau of Statistics, sending out the General Social Survey to Australian residents over the age of 15 over a period of 4 months from June to September 2020 [@ausstatsmethods]. Since this survey was conducted at the start of the COVID-19 pandemic, all surveys were completed online or by a phone interview, excluding any opportunities for face-to-face interviews or paper copies. Sample recruitment was conducted randomly from rural to urban areas, choosing to target lower socio-economic areas and randomly selecting individuals in one household to complete the survey in these target areas. Unfortunately, data could not be collected for households residing in the most remote parts of the country. More than 5000 households completed this survey across Australia, with 3 764 completed online and 1 540 completed over the phone. This accounts for 60.5% response rate, and due to the nature of the pandemic, no face-to-face follow ups were conducted for non-responses, leading to an unusually high non-response rate of 37.9%. The rest of the surveys sent were either refused or partly-responded to. 
@@ -79,6 +78,28 @@ One of the major drawbacks of this survey was that compared to their previous su
 The questions asked had a good selection of options for the participant to choose from and often included more open-ended options such as “Other (please specify)” or “Not stated [Allow blank response/skip question functionality]” for people who may not fall into the other options. For instance, when asking for gender, the questionnaire had "male", "female", and "other" options for selection. While most of their questions had a good variety of answers to select from, there were some exclusions in the questions they asked. For example, while there are various questions relating to the participant’s marital status, none were asking about their relationship status. This exclusion ignores the people who are in a serious relationship but do not wish to get married. This could lead to the survey missing some important information since being in a serious relationship with another individual often has a similar effect on one’s mental well-being to a married relationship. 
  
 The questions were explicit and easy to read and understand. Many of the questions included an example to ensure that the participant understood what the question was asking and that they know how to properly answer it. The questions also had a good flow and order to them. For instance, in “Module 7.2: Contact with Family and Friends (CWF)” they would start by asking “In the last 3 months have you seen family or friends who do not live with you in person?”, then follow up with asking other questions relating to it such as “How often have you seen them in person in the last 3 months?” or “In the last 3 months, have you used any of these other types of contact with family or friends [CWF_WS1]?”. 
+
+```{r labour-income, fig.cap="Demographics Related to Labour and Income", echo=FALSE}
+#grab labour and income data
+labour_income <- subset(persons_data, 
+                 Section == "Labour force status" | Section == "Main Source of Household Income" |
+                   Section == "Current weekly household equivalised gross income quintiles" |
+                   Modules == "Government support has been the main source of income in last 2 years")
+
+# clean data
+drop <- c("Section","Modules","Total persons")
+labour_income = labour_income[,(names(labour_income) %in% drop)]
+labour_income[ , c(1)] <- list(NULL)
+labour_income <- labour_income |>
+  rename ("Current Status" = Modules,
+          "Population" = `Total persons`)
+
+# create table
+kbl(labour_income, caption = "Demographics Related to Labour and Income") %>%
+  kable_paper("striped", full_width = F) %>%
+  pack_rows(index = c("Labour force status" = 4, "Main Source of Household Income" = 4, "Current weekly household equivalised gross income quintiles" = 5, "Government support has been the main source of income in last 2 years" = 1))
+
+```
 
 # Results
 We chose to analyze a subset of the data titled Social Experiences–By Sex and Health Characteristics from the 2020 Australia General Social Survey. From this survey, we wanted to see how much trust Australians have in their healthcare system and whether or not gender and socioeconomic status influences their mental health and level of trust. 
