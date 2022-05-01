@@ -2,7 +2,7 @@
 title: "Scope of Australian Social Survey Inadequate in Representing Residents’ Mental Health and Socioeconomic Standards of Living during COVID-19"
 author: 
   - Christina Chan-Ying
-  - Yan Dumalag
+  - Yandrickx Dumalag
   - Reese Halfyard
 thanks: "Code and data are available at: https://github.com/ChristinaChanYing/Australian-Social-Determinants-of-Health"
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -256,6 +256,9 @@ persons_edu |>
 
 ```
 
+
+Note: Non-school qualifications refers to educational attainments other than those of pre-primary, primary or secondary education qualifications.
+
 Lastly, in Figure \@ref(fig:edu), we wanted to visualize the proportion of the population’s physical and mental health conditions side-by-side with their level of highest non-school qualifications. For those who do not have a disability, the highest number of the sampled population achieved a Bachelor degree or above with 5, 310 participants who reported so. The least number of people who did not have a disability reported achieving an Advanced Diploma/Diploma or below. For those that did have a disability, the most number of people reported having no non-school qualifications. Less number of people achieved a Bachelor Degree or above. In comparing the different physical conditions, this data shows that those who did have a disability had less individuals reporting having achieved a Bachelor Degree or above; indicating either less access to higher education or a choice to pursue no school or the tendency to choose to pursue advanced diplomas instead of a degree. For participants that did not have a mental health condition, more reported achieving a Bachelor Degree; whereas, for those who did have a mental health condition, more reported having achieved an advanced diploma/diploma or below. For participants who did not have a long term condition, more reported having achieved a Bachelor Degree; whereas, for those who did have a long term condition, more reported having achieved no further education. The answers show a pretty consistent pattern, where those who did not have a physical or mental health condition achieved higher education in reporting having a Bachelor Degree. For those who did have a physical or mental health condition, most reported having achieved an Advanced Diploma/Diploma or below, or having no non-school qualifications. This shows a socio-economic disadvantage based for those who have physical and mental health conditions. 
 
 # Discussion
@@ -275,7 +278,13 @@ In this survey, we understand the differences between men and women who trust th
 Only until recently, considerations and understandings of mental illness in modern society have been considered. However, a history of societal neglect justifies the lack of trust which both male and female Australians with mental illness obtain.
 
 
-## Socioeconomic Status
+## Weaknesses
+
+This data set, which has been conducted during a 4-month time frame in the middle of COVID-19, may not be the most accurate representation of Australian mental health and dependency on healthcare. Mental health issues have massively increased since the pandemic began, as the result of a lack of social interaction, and a sudden halt in regular activities. In addition, people are more likely to report dissatisfaction in the colder months, which is when the survey occurred. Many other weaknesses come into play considering the method of conduction, which was online and by telephone. In lots of situations, these results may be random, inaccurate, or even miss a variety of Australian citizens. This includes a lack of connection with those who live in rural areas or Indigenous communities. In this survey, citizens do not disclose the area of Australia they live, nor is there information about the specific regions within the country. This could possibly include wealthier regions of Australia, and not those who lack a lower income, which may experience more socioeconomic difficulties. Lastly, justification of gender according to male and female is inconsiderate of non-binary persons, and not an accurate representation of Australian society. 
+
+## Next Steps 
+
+We will discuss some potential next steps to further improve the social survey, and their results. Firstly, this would involve reaching out to mental health clinics in Australia, and communicating with professionals in the industry. This would allow the survey conductors to improve the quality of the questions, and how they are being asked. Another potential next step could be to split up the variable, ‘Has a mental illness”, so it is more specific. This could include dividing it up into multiple sectors, specifying the illness and providing more variety to the survey. 
 
 
 
@@ -286,6 +295,9 @@ Only until recently, considerations and understandings of mental illness in mode
 # Appendix {-}
 
 ## Supplementary Survey
+
+The survey supplement asks respondents to report the their socioeconomic status, their physical and mental wellbeing, and their trust in the Australian healthcare system. 
+The supplemental survey can be accessed via the following link https://forms.gle/f8uucLhMUiiJUavv8.
 
 
 
